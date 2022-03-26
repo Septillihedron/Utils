@@ -28,7 +28,7 @@ public class CollectionUtils {
 			if (itemClass.isInstance(item))
 				list.add(itemClass.cast(item));
 		});
-		return List.copyOf(list);
+		return list;
 	}
 	public static <T> List<T> getAsList(Object object, Class<T> itemClass) {
 		if (!(object instanceof List<?>)) return null;
