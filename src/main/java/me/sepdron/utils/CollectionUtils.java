@@ -1,7 +1,7 @@
 package me.sepdron.utils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,12 +10,12 @@ public class CollectionUtils {
 	private CollectionUtils() {}
 
 	public static <K, V> Map<K, V> getMapAs(Map<?, ?> unconvertedMap, Class<K> keyClass, Class<V> valueClass) {
-		Map<K, V> map = new HashMap<K, V>();
+		Map<K, V> map = new LinkedHashMap<K, V>();
 		unconvertedMap.forEach((key, val) -> {
 			if(keyClass.isInstance(key) && valueClass.isInstance(val))
 				map.put(keyClass.cast(key), valueClass.cast(val));
 		});
-		return Map.copyOf(map);
+		return map;
 	}
 	public static <K, V> Map<K, V> getAsMap(Object object, Class<K> keyClass, Class<V> valueClass) {
 		if (!(object instanceof Map<?, ?>)) return null;
